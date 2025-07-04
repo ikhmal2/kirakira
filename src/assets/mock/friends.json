@@ -1,0 +1,24 @@
+{
+    "friends": [
+        {
+            "name": "Ijud",
+            "amountOwed": 495,
+            "debtAmount": 0
+        },
+        {
+            "name": "Alif Aiman",
+            "amountOwed": 0,
+            "debtAmount": 0
+        },
+        {
+            "name": "Ariff",
+            "amountOwed": 0,
+            "debtAmount": 0
+        },
+        {
+            "name": "Harith",
+            "amountOwed": 0,
+            "debtAmount": 0
+        }
+    ]
+}

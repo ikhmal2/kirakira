@@ -8,7 +8,7 @@ import {
   IonToolbar,
   IonItem,
   IonAvatar,
-  IonSkeletonText,
+  IonSkeletonText, IonInput, IonList, IonButton
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -16,14 +16,9 @@ import {
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [
-    IonSkeletonText,
-    IonAvatar,
+  imports: [IonButton, IonList, IonInput,
     IonItem,
     IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
     CommonModule,
     FormsModule,
   ],
@@ -38,5 +33,5 @@ export class LoginPage implements OnInit {
     console.log(msg);
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }

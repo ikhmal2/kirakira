@@ -1,5 +1,19 @@
 <ion-content [fullscreen]="true">
-	<div class="font-bold py-4">
-		<h1>KiraKira</h1>
+	<div class="absolute -translate-x-2/4 -translate-y-2/4 left-2/4 top-2/4 flex justify-center items-center flex-col">
+		<h1 class="ml-12">KiraKira</h1>
+		<div>
+			<ion-list>
+				<ion-item>
+					<ion-input label="Username" labelPlacement="stacked" />
+				</ion-item>
+				<ion-item>
+					<ion-input label="Password" labelPlacement="stacked" type="password" />
+				</ion-item>
+
+				<ion-item lines="none">
+					<ion-button [disabled]="false">Log In</ion-button>
+				</ion-item>
+			</ion-list>
+		</div>
 	</div>
 </ion-content>

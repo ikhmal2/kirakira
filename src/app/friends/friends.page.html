@@ -1,13 +1,13 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Friends	</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Friends</ion-title>
+      <app-header />
     </ion-toolbar>
   </ion-header>
+  <div class="container">
+    <app-debt-status />
+    @for (friend of friendsList; track friend.name) {
+    <div>{{ friend.name }}</div>
+    }
+  </div>
 </ion-content>
