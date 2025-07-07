@@ -8,47 +8,44 @@ import { Profile } from 'src/app/services/interfaces';
   styleUrls: ['./debt-status.component.scss'],
 })
 export class DebtStatusComponent implements OnInit {
-  private friendsService = inject(FriendsService)
-  public profile = <Profile>{}
+  private friendsService = inject(FriendsService);
+  public profile = <Profile>{};
+  public debtAmount: number = 0;
 
   constructor() {
-    console.log(this.profile);
-    this.initProfile()
-    console.log(this.profile.totalOwed);
-    console.log(this.oweOrOwed());
-    console.log(this.loadAmount());
-
+    this.initProfile();
+    this.loadAmount();
   }
 
-  initProfile() {
+  initProfile(): any {
+    let profile = <Profile>{};
     this.friendsService.getOwedAmount().subscribe({
       next: (res) => {
-        this.profile = res
-      }
-    })
+        profile = res;
+        this.profile = profile;
+      },
+    });
   }
 
   oweOrOwed() {
     if (this.profile.totalOwed > this.profile.owe) {
-      return true
-    } else { return false }
+      return true;
+    } else {
+      return false;
+    }
   }
 
   loadAmount() {
     this.friendsService.getOwedAmount().subscribe({
       next: (res) => {
         if (this.oweOrOwed()) {
-          console.log('lancau');
-          console.log('hi', res.totalOwed, res.owe);
-          return res.totalOwed
+          this.debtAmount = res.totalOwed;
         } else {
-          console.log('lancau1');
-          return res.owe
+          this.debtAmount = res.owe;
         }
-      }
-    })
+      },
+    });
   }
 
-  ngOnInit() { }
-
+  ngOnInit() {}
 }

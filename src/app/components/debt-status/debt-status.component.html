@@ -1,2 +1,7 @@
-<div class="container">
+<div class="pb-4">
+	@if (oweOrOwed()) {
+	Overall, you are owed <span class="text-green-500">RM{{ debtAmount.toFixed(2) }}</span>
+	} @else {
+	Overall, you owe <span class="text-red-500">RM{{ debtAmount.toFixed(2) }}</span>
+	}
 </div>
