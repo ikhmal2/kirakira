@@ -4,19 +4,18 @@ import { Friend, Friends, Profile } from './interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FriendsService {
-  private http = inject(HttpClient)
+  private http = inject(HttpClient);
 
   getFriendsList(): Observable<Friends> {
-    return this.http.get<Friends>('assets/mock/friends.json')
+    return this.http.get<Friends>('assets/mock/friends.json');
   }
 
   getOwedAmount(): Observable<Profile> {
-    return this.http.get<Profile>('assets/mock/profile.json')
+    return this.http.get<Profile>('assets/mock/profile.json');
   }
 
-  constructor() {
-  }
+  constructor() {}
 }
