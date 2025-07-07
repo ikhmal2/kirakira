@@ -1,13 +1,51 @@
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <app-header />
-    </ion-toolbar>
-  </ion-header>
-  <div class="container">
-    <app-debt-status />
-    @for (friend of friendsList; track friend.name) {
-    <div>{{ friend.name }}</div>
-    }
-  </div>
+	<ion-header collapse="condense">
+		<ion-toolbar>
+			<app-header />
+		</ion-toolbar>
+	</ion-header>
+
+	<div class="container">
+		<app-debt-status />
+		@for (friend of friendsList; track friend.name) {
+		<ion-item lines="none">
+			<ion-avatar>
+				<img alt="{{friend.name}}" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+			</ion-avatar>
+			<ion-label>{{friend.name}}</ion-label>
+			@if (friend.amountOwed - friend.debtAmount < 0) { <ion-label color="warning">RM{{(friend.amountOwed -
+				friend.debtAmount).toFixed(2)}}</ion-label>
+				} @else {
+				<ion-label>RM{{(friend.amountOwed - friend.debtAmount).toFixed(2)}}</ion-label>
+				}
+		</ion-item>
+		}
+	</div>
+
+	<div class="w-1/2 mx-auto flex flex-col gap-4">
+		@if (!showSettledFriends) {
+		<ion-text color="light" class="text-sm text-center">Hiding friends you settled up with over 7 days
+			ago</ion-text>
+		<ion-button expand="block" fill="outline" size="small" (click)="displaySettledFriends()">Show 7 settled-up
+			friends</ion-button>
+		} @else if (showSettledFriends) {
+		<ion-text class="text-sm text-center">Previously settled friends</ion-text>
+		<ion-button expand="block" fill="clear" size="small" (click)="displaySettledFriends()">Re-hide</ion-button>
+		}
+	</div>
+
+	@if (showSettledFriends) {
+	<div id="settled-friends" class="container">
+		@for (friend of settledFriendsList; track friend.name) {
+		<ion-item lines="none">
+			<ion-avatar>
+				<img alt="{{friend.name}}" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+			</ion-avatar>
+			<ion-label>{{friend.name}}</ion-label>
+			<ion-label color="success">RM{{(friend.amountOwed -
+				friend.debtAmount).toFixed(2)}}</ion-label>
+		</ion-item>
+		}
+	</div>
+	}
 </ion-content>
