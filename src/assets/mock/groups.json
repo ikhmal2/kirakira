@@ -1,0 +1,23 @@
+{
+  "groups": [
+    {
+      "name": "Thailand",
+      "amount": 22,
+      "list": [
+        {
+          "name": "Ijud",
+          "amount": -5
+        },
+        {
+          "name": "Alif Aiman",
+          "amount": 23
+        }
+      ]
+    },
+    {
+      "name": "Mersing",
+      "amount": 0,
+      "list": []
+    }
+  ]
+}
