@@ -1,6 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { IonItem, IonIcon } from "@ionic/angular/standalone";
+import { Component, OnInit } from '@angular/core';
+import { IonItem, IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { searchOutline } from 'ionicons/icons';
 
@@ -8,24 +7,23 @@ import { searchOutline } from 'ionicons/icons';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  imports: [IonIcon, IonItem]
+  imports: [IonIcon, IonItem],
 })
 export class HeaderComponent implements OnInit {
   constructor() {
-    addIcons({ searchOutline })
+    addIcons({ searchOutline });
   }
 
   checkRoute() {
-    const urlPath = window.location.pathname
+    const urlPath = window.location.pathname;
     if (urlPath === '/friends') {
-      return 'Add Friends'
+      return 'Add Friends';
     } else if (urlPath === '/groups') {
-      return 'Create Group'
+      return 'Create Group';
     } else {
-      return ''
+      return '';
     }
   }
 
-  ngOnInit() { }
-
+  ngOnInit() {}
 }
