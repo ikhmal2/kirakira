@@ -1,5 +1,38 @@
 <ion-content [fullscreen]="true">
-    <div class="container">
-        fuck you
-    </div>
-</ion-content>
+	<ion-header collapse="condense">
+		<ion-toolbar>
+			<app-header />
+		</ion-toolbar>
+	</ion-header>
+	<ion-content [fullscreen]="true">
+		<div class="container">
+			<app-debt-status />
+			<div class="container">
+				@for (group of details.groups; track $index) {
+				<ion-item lines="none">
+					<ion-icon name="file-tray-outline"></ion-icon>
+					<div>{{group.name}}</div>
+				</ion-item>
+				<ion-list>
+					@for (people of group.list; track $index) { <div>
+						<ion-item lines="none">
+							-- @if (people.amount < 0) { <ion-text>
+								<p class="text-xs">
+									You owe {{people.name}}
+									<ion-text color="danger">
+										RM{{removeCharInNegativeAmount(people.amount.toString())}}
+									</ion-text>
+								</p>
+								</ion-text>
+								} @else {
+								<ion-text>
+									<p class="text-xs">{{people.name}} owes RM{{people.amount}}</p>
+								</ion-text>
+								}
+						</ion-item>
+					</div>}
+				</ion-list>
+				}
+			</div>
+		</div>
+	</ion-content>
