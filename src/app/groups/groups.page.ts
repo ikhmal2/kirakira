@@ -10,13 +10,21 @@ import {
   IonList,
   IonLabel,
   IonText,
+  IonCol,
+  IonRow,
+  IonButton,
+  IonAvatar,
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from '../components/header/header.component';
 import { DebtStatusComponent } from '../components/debt-status/debt-status.component';
-import { fileTrayOutline } from 'ionicons/icons';
+import {
+  fileTrayOutline,
+  logoDesignernews,
+  pricetagsOutline,
+} from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { GroupsService } from '../services/groups.service';
-import { Group, Groups } from '../services/interfaces';
+import { Groups, Group } from '../services/interfaces';
 
 @Component({
   selector: 'app-groups',
@@ -24,6 +32,10 @@ import { Group, Groups } from '../services/interfaces';
   styleUrls: ['./groups.page.scss'],
   standalone: true,
   imports: [
+    IonAvatar,
+    IonButton,
+    IonRow,
+    IonCol,
     IonText,
     IonLabel,
     IonList,
@@ -41,19 +53,40 @@ import { Group, Groups } from '../services/interfaces';
 export class GroupsPage implements OnInit {
   private groupService = inject(GroupsService);
   public details = <Groups>{};
+  public groupList: Group[] = [];
+  public settleGroupList: Group[] = [];
+  public showSettledGroups = false;
+
   constructor() {
-    addIcons({ fileTrayOutline });
     this.retrieveDetails();
+    addIcons({ fileTrayOutline, pricetagsOutline });
   }
 
-  retrieveDetails() {
-    this.groupService.retrieveDetails().subscribe((res) => {
-      this.details = res;
+  async retrieveDetails() {
+    this.groupService.retrieveDetails().subscribe({
+      next: (res) => {
+        for (let i = 0; i < res.groups.length; i++) {
+          if (res.groups[i].amount !== 0) {
+            this.groupList.push(res.groups[i]);
+          } else {
+            this.settleGroupList.push(res.groups[i]);
+          }
+        }
+      },
     });
   }
 
-  filterGroup() {
-    return;
+  displaySettledGroups() {
+    this.showSettledGroups = !this.showSettledGroups;
+    if (this.showSettledGroups) {
+      document
+        .querySelector('#settled-friends')
+        ?.classList.add('visibility', 'collapse');
+    } else {
+      document
+        .querySelector('#settled-friends')
+        ?.classList.add('visibility', 'visible');
+    }
   }
 
   removeCharInNegativeAmount(amount: string): string {

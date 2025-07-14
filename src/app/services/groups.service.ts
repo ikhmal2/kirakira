@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Groups } from './interfaces';
+import { Group, Groups } from './interfaces';
 
 @Injectable({
   providedIn: 'root',
