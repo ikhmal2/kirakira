@@ -65,15 +65,6 @@ export class FriendsPage implements OnInit {
 
   displaySettledFriends() {
     this.showSettledFriends = !this.showSettledFriends;
-    if (this.showSettledFriends) {
-      document
-        .querySelector('#settled-friends')
-        ?.classList.add('visibility', 'collapse');
-    } else {
-      document
-        .querySelector('#settled-friends')
-        ?.classList.add('visibility', 'visible');
-    }
   }
 
   ngOnInit() {}
