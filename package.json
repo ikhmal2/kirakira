@@ -1,15 +1,16 @@
 {
   "name": "kirakira",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Ikhmal Fahmi",
+  "homepage": "https://kirakira.io/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "android": "ionic cap run android --livereload --external"
   },
   "private": true,
   "dependencies": {
@@ -21,6 +22,7 @@
     "@angular/platform-browser": "^20.0.0",
     "@angular/platform-browser-dynamic": "^20.0.0",
     "@angular/router": "^20.0.0",
+    "@capacitor/android": "^7.4.3",
     "@capacitor/app": "7.0.1",
     "@capacitor/core": "7.4.0",
     "@capacitor/haptics": "7.0.1",
@@ -63,5 +65,5 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.8.0"
   },
-  "description": "An Ionic project"
+  "description": "KiraKira is a simple and intuitive app built to make bill splitting easier and fairer—especially for friends, family, and groups. Whether it's a makan session, road trip, or shared expenses, KiraKira helps you calculate everyone's share, track who owes who, and keep things transparent."
 }
