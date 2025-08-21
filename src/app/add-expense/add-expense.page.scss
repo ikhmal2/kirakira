@@ -3,6 +3,10 @@ ion-toolbar {
 	padding-right: 1rem;
 }
 
+ion-header {
+	padding-bottom: unset;
+}
+
 ion-input[placeholder]{
 	// font-size: .5rem;
 }
