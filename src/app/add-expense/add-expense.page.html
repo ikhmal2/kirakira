@@ -14,7 +14,31 @@
 			<ion-buttons slot="primary">Save</ion-buttons>
 		</ion-toolbar>
 		<ion-item>
-			<ion-input label="With you and:" placeholder="Enter names, emails, or phone #s"></ion-input>
+			<ion-input label="With you and:" placeholder="Enter names, emails, or phone #s"
+				autofocus="true"></ion-input>
 		</ion-item>
 	</ion-header>
+
+	<div class="container">
+		<section>
+			<div>Recent</div>
+			@for (recentItem of recentList; track $index) {
+			@if (recentItem.type === 'friend') {
+			<ion-item>
+				<ion-avatar class="ion-margin-end">
+					<img alt="{{recentItem.name}}" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+				</ion-avatar>
+				<ion-label>{{recentItem.name}}</ion-label>
+			</ion-item>
+			} @else if (recentItem.type === 'group') {
+			<ion-item class="ion-justify-content-between ion-align-self-center">
+				<ion-row class="ion-margin-end">
+					<ion-icon class="ion-margin-end" size="large" name="file-tray-outline"></ion-icon>
+					<ion-label>{{recentItem.name}}</ion-label>
+				</ion-row>
+			</ion-item>
+			}
+			}
+		</section>
+	</div>
 </ion-content>

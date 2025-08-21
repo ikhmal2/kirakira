@@ -1,11 +1,14 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="false">
 	<ion-header collapse="condense">
 		<ion-toolbar>
 			<app-header />
 		</ion-toolbar>
 	</ion-header>
 	<ion-content [fullscreen]="true">
-		<div class="container">
+		<ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+			<ion-refresher-content></ion-refresher-content>
+		</ion-refresher>
+		<div class="container bg-yellow-200">
 			<app-debt-status />
 			<div class="">
 				@for (group of groupList; track $index) {

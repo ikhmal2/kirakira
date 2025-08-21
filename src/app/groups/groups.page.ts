@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { RefresherCustomEvent } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -13,15 +14,12 @@ import {
   IonCol,
   IonRow,
   IonButton,
-  IonAvatar,
+  IonRefresherContent,
+  IonRefresher,
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from '../components/header/header.component';
 import { DebtStatusComponent } from '../components/debt-status/debt-status.component';
-import {
-  fileTrayOutline,
-  logoDesignernews,
-  pricetagsOutline,
-} from 'ionicons/icons';
+import { fileTrayOutline, pricetagsOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { GroupsService } from '../services/groups.service';
 import { Groups, Group } from '../services/interfaces';
@@ -32,7 +30,8 @@ import { Groups, Group } from '../services/interfaces';
   styleUrls: ['./groups.page.scss'],
   standalone: true,
   imports: [
-    IonAvatar,
+    IonRefresher,
+    IonRefresherContent,
     IonButton,
     IonRow,
     IonCol,
@@ -92,6 +91,13 @@ export class GroupsPage implements OnInit {
   removeCharInNegativeAmount(amount: string): string {
     const str = amount.replace('-', '');
     return str;
+  }
+
+  handleRefresh(event: RefresherCustomEvent) {
+    setTimeout(() => {
+      location.reload();
+      event.target.complete();
+    }, 2000);
   }
 
   ngOnInit() {}
