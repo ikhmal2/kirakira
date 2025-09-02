@@ -5,12 +5,13 @@
   "homepage": "https://kirakira.io/",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ionic serve",
+    "build": "ionic build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "android": "ionic cap run android --livereload --external"
+    "android": "ionic cap run android --livereload --external",
+    "sync": "ionic cap sync"
   },
   "private": true,
   "dependencies": {
