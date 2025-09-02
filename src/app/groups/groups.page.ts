@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { RefresherCustomEvent } from '@ionic/angular/standalone';
+import { RefresherCustomEvent, IonCard } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -47,6 +47,7 @@ import { Groups, Group } from '../services/interfaces';
     FormsModule,
     HeaderComponent,
     DebtStatusComponent,
+    IonCard,
   ],
 })
 export class GroupsPage implements OnInit {

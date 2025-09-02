@@ -37,14 +37,7 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
 
-// Custom CSS
-@utility container {
-	margin-inline: auto;
-	padding-inline: 2rem;
-}
-
-ion-header {
-	// background-color: white;
-	padding-bottom: 2rem;
-	// height: 50px;
+ion-toolbar {
+	--padding-top: .5rem;
+	// --padding-bottom: .5rem;
 }
