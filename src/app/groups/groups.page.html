@@ -1,90 +1,92 @@
-<ion-content [fullscreen]="true">
-	<ion-header>
-		<ion-toolbar>
-			<app-header />
-		</ion-toolbar>
-	</ion-header>
-	<ion-content [fullscreen]="true">
-		<ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
-			<ion-refresher-content></ion-refresher-content>
-		</ion-refresher>
-		<div class="container">
-			<app-debt-status />
-			<div class="">
-				@for (group of groupList; track $index) {
-				<ion-item class="ion-justify-content-between ion-align-self-center" lines="none">
-					<ion-row class="ion-margin-end">
-						<ion-icon class="ion-margin-end" name="file-tray-outline"></ion-icon>
-						<div class="font-bold text-sm">{{group.name}}</div>
-					</ion-row>
-					<ion-col>
-						@if (group.amount !== 0) {
-						@if (group.amount > 0) {
-						<ion-text class="text-xs text-nowrap">you are owed RM{{group.amount.toFixed(2)}} </ion-text>
-						} @else {
-						<ion-text>you owed RM{{removeCharInNegativeAmount(group.amount.toFixed(2))}}</ion-text>
-						}
-						} @else {
-						<ion-text color="light">settled up</ion-text>
-						}
-					</ion-col>
-				</ion-item>
-				<ion-list>
-					@for (people of group.list; track $index) { <div>
-						<ion-item lines="none">
-							@if (people.amount < 0) { <ion-text>
-								<p class="text-xs">
-									You owe {{people.name}}
-									<ion-text color="danger">
-										RM{{removeCharInNegativeAmount(people.amount.toFixed(2))}}
-									</ion-text>
-								</p>
-								</ion-text>
-								} @else {
-								<ion-text>
-									<p class="text-xs">{{people.name}} owes RM{{people.amount.toFixed(2)}}</p>
-								</ion-text>
-								}
-						</ion-item>
-					</div>}
-				</ion-list>
-				}
-				<div>
+<ion-header>
+	<ion-toolbar>
+		<app-header />
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+	<ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+		<ion-refresher-content></ion-refresher-content>
+	</ion-refresher>
+	<div>
+		<app-debt-status />
+		<div>
+			@for (group of groupList; track $index) {
+			<ion-item class="ion-justify-content-between ion-align-self-center" lines="none">
+				<ion-row class="ion-margin-end">
+					<ion-icon class="ion-margin-end" name="file-tray-outline"></ion-icon>
+					<ion-text>{{group.name}}</ion-text>
+				</ion-row>
+				<ion-col>
+					@if (group.amount !== 0) {
+					@if (group.amount > 0) {
 					<ion-item lines="none">
-						<ion-icon class="ion-margin-end" name="pricetags-outline" />
-						<ion-label>Non-group expenses</ion-label>
+						<ion-text>you are owed RM{{group.amount.toFixed(2)}}</ion-text>
 					</ion-item>
-				</div>
-			</div>
-
-			<div class="w-1/2 mx-auto flex flex-col gap-4 pt-4">
-				@if (!showSettledGroups) {
-				<ion-text color="light" class="text-sm text-center">Hiding groups you settled up with over 7 days
-					ago</ion-text>
-				<ion-button expand="block" fill="outline" size="small" (click)="displaySettledGroups()">Show 3
-					settled-up
-					groups</ion-button>
-				} @else if (showSettledGroups) {
-				<ion-text class="text-sm text-center">Previously settled groups</ion-text>
-				<ion-button expand="block" fill="clear" size="small"
-					(click)="displaySettledGroups()">Re-hide</ion-button>
-				}
-			</div>
-
-			@if (showSettledGroups) {
-			<div class="container">
-				@for (group of settleGroupList; track group.name) {
-				<ion-item class="ion-justify-content-between ion-align-self-center" lines="none">
-					<ion-row class="ion-margin-end">
-						<ion-icon class="ion-margin-end" name="file-tray-outline"></ion-icon>
-						<div class="font-bold text-sm">{{group.name}}</div>
-					</ion-row>
-					<ion-col>
-						<ion-text color="light">settled up</ion-text>
-					</ion-col>
+					} @else {
+					<ion-item lines="none">you owed
+						RM{{removeCharInNegativeAmount(group.amount.toFixed(2))}}</ion-item>
+					}
+					} @else {
+					<ion-item lines="none" color="light">settled up</ion-item>
+					}
+				</ion-col>
+			</ion-item>
+			<ion-list>
+				@for (people of group.list; track $index) { <div>
+					<ion-item lines="none">
+						@if (people.amount < 0) { <ion-text>
+							<ion-text>
+								You owe {{people.name}}
+								<ion-text color="danger">
+									RM{{removeCharInNegativeAmount(people.amount.toFixed(2))}}
+								</ion-text>
+							</ion-text>
+							</ion-text>
+							} @else {
+							<ion-text>
+								{{people.name}} owes RM{{people.amount.toFixed(2)}}
+							</ion-text>
+							}
+					</ion-item>
+				</div>}
+			</ion-list>
+			}
+			<div>
+				<ion-item lines="none">
+					<ion-icon class="ion-margin-end" name="pricetags-outline" />
+					<ion-label>Non-group expenses</ion-label>
 				</ion-item>
-				}
 			</div>
+		</div>
+
+		<div class="w-1/2 mx-auto flex flex-col gap-4 pt-4">
+			@if (!showSettledGroups) {
+			<ion-text color="light" class="text-sm text-center">Hiding groups you settled up with over 7 days
+				ago</ion-text>
+			<ion-button expand="block" fill="outline" size="small" (click)="displaySettledGroups()">Show 3
+				settled-up
+				groups</ion-button>
+			} @else if (showSettledGroups) {
+			<ion-text class="text-sm text-center">Previously settled groups</ion-text>
+			<ion-button expand="block" fill="clear" size="small" (click)="displaySettledGroups()">Re-hide</ion-button>
 			}
 		</div>
-	</ion-content>
+
+		@if (showSettledGroups) {
+		<div class="container">
+			@for (group of settleGroupList; track group.name) {
+			<ion-item class="ion-justify-content-between ion-align-self-center" lines="none">
+				<ion-row class="ion-margin-end">
+					<ion-icon class="ion-margin-end" name="file-tray-outline"></ion-icon>
+					<div class="font-bold text-sm">{{group.name}}</div>
+				</ion-row>
+				<ion-col>
+					<ion-text color="light">settled up</ion-text>
+				</ion-col>
+			</ion-item>
+			}
+		</div>
+		}
+	</div>
+</ion-content>
