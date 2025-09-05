@@ -1,12 +1,15 @@
-	ion-label {
-		padding-left: .5rem;
-		padding-right: 1rem;
-	}
+ion-label {
+	padding-left: .5rem;
+	padding-right: 1rem;
+}
 
-	ion-item {
-		padding-bottom: 1rem;
-	}
+ion-col {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;	
+}
 
-	#settled-friends {
-		transition: visibility 2s 500ms;
-	}
+#settled-friends {
+	transition: visibility 2s 500ms;
+}

@@ -10,6 +10,11 @@ import {
   IonLabel,
   IonText,
   IonButton,
+  IonCard,
+  IonList,
+  IonGrid,
+  IonRow,
+  IonCol,
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from '../components/header/header.component';
 import { FriendsService } from '../services/friends.service';
@@ -22,6 +27,10 @@ import { DebtStatusComponent } from '../components/debt-status/debt-status.compo
   styleUrls: ['./friends.page.scss'],
   standalone: true,
   imports: [
+    IonCol,
+    IonRow,
+    IonGrid,
+    IonList,
     IonButton,
     IonText,
     IonLabel,
@@ -34,6 +43,7 @@ import { DebtStatusComponent } from '../components/debt-status/debt-status.compo
     FormsModule,
     HeaderComponent,
     DebtStatusComponent,
+    IonCard,
   ],
 })
 export class FriendsPage implements OnInit {

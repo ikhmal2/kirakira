@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonItem, IonIcon } from '@ionic/angular/standalone';
+import { IonItem, IonIcon, IonCard } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { searchOutline } from 'ionicons/icons';
 
@@ -7,7 +7,7 @@ import { searchOutline } from 'ionicons/icons';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  imports: [IonIcon, IonItem],
+  imports: [IonIcon, IonItem, IonCard],
 })
 export class HeaderComponent implements OnInit {
   constructor() {
