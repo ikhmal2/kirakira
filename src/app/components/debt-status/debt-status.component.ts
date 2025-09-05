@@ -1,11 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FriendsService } from 'src/app/services/friends.service';
 import { Profile } from 'src/app/services/interfaces';
+import { IonText } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-debt-status',
   templateUrl: './debt-status.component.html',
   styleUrls: ['./debt-status.component.scss'],
+  imports: [IonText],
 })
 export class DebtStatusComponent implements OnInit {
   private friendsService = inject(FriendsService);
