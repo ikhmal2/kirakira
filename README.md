@@ -30,7 +30,6 @@ _Coming soon..._
 
 - **Framework**: [Angular](https://angular.io/)
 - **UI Toolkit**: [Ionic Framework](https://ionicframework.com/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Platform**: Web + Mobile (PWA support via Ionic)
 
 ---
