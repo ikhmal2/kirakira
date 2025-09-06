@@ -3,12 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
   IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
   IonItem,
-  IonAvatar,
-  IonSkeletonText, IonInput, IonList, IonButton
+  IonInput, IonList, IonButton
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -24,13 +20,7 @@ import {
   ],
 })
 export class LoginPage implements OnInit {
-  public dummyArray: string[] = ['fuck', 'konek', 'kecik', 'makcik', 'fayyaz'];
   constructor() {
-    this.firstFunction('fuck you');
-  }
-
-  firstFunction(msg: string) {
-    console.log(msg);
   }
 
   ngOnInit() { }
