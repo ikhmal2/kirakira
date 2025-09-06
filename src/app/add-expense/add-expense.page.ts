@@ -1,19 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-  IonIcon,
-  IonButtons,
-  IonItem,
-  IonInput,
-  IonLabel,
-  IonAvatar,
-  IonRow,
-} from '@ionic/angular/standalone';
+import { HeaderComponent } from '../components/header/header.component';
+import { IonContent, IonHeader, IonToolbar, IonIcon, IonItem, IonLabel, IonAvatar, IonRow, IonSearchbar, IonCard, IonCardHeader, IonCardTitle, IonList } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { closeOutline, fileTrayOutline } from 'ionicons/icons';
 import { FriendsService } from '../services/friends.service';
@@ -24,27 +13,24 @@ import { GroupsService } from '../services/groups.service';
   templateUrl: './add-expense.page.html',
   styleUrls: ['./add-expense.page.scss'],
   standalone: true,
-  imports: [
+  imports: [IonList, IonSearchbar,
     IonRow,
     IonAvatar,
     IonLabel,
-    IonInput,
     IonItem,
-    IonButtons,
     IonIcon,
     IonContent,
     IonHeader,
-    IonTitle,
     IonToolbar,
     CommonModule,
     FormsModule,
-  ],
+    HeaderComponent, IonCard, IonCardHeader, IonCardTitle],
 })
 export class AddExpensePage implements OnInit {
   private friendService = inject(FriendsService);
   private groupService = inject(GroupsService);
-  public friendList: string[] = [];
-  public groupList: string[] = [];
+  public friendList: string[] = ['Aan Adik Alep', 'Alif Aiman', 'Ijud', 'Ariff'];
+  public groupList: string[] = ['Bob Mullet', 'Ke pd ke kita', 'Loy dtg', 'Pestapora'];
   public recentList = [
     { name: 'Ijud', type: 'friend' },
     { name: 'Thailand', type: 'group' },
@@ -75,5 +61,5 @@ export class AddExpensePage implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }

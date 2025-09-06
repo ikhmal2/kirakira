@@ -1,37 +1,28 @@
-<ion-header [translucent]="true">
+<ion-header>
 	<ion-toolbar>
-		<ion-title>add-expense</ion-title>
+		<app-header />
+	</ion-toolbar>
+	<ion-toolbar class="ion-padding-bottom">
+		<ion-searchbar placeholder="With you and"></ion-searchbar>
 	</ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-	<ion-header collapse="condense">
-		<ion-toolbar>
-			<ion-buttons slot="secondary">
-				<ion-icon name="close-outline" size="large"></ion-icon>
-			</ion-buttons>
-			<ion-title>Add an expense</ion-title>
-			<ion-buttons slot="primary">Save</ion-buttons>
-		</ion-toolbar>
-		<ion-item>
-			<ion-input label="With you and:" placeholder="Enter names, emails, or phone #s"
-				autofocus="true"></ion-input>
-		</ion-item>
-	</ion-header>
+<ion-content class="ion-padding">
+	<ion-card>
+		<ion-card-header>
+			<ion-card-title>Recent</ion-card-title>
+		</ion-card-header>
 
-	<div class="container">
-		<section>
-			<div>Recent</div>
-			@for (recentItem of recentList; track $index) {
-			@if (recentItem.type === 'friend') {
-			<ion-item>
+		<ion-list>
+			@for (recentItem of recentList; track $index) { @if (recentItem.type==='friend' ) {
+			<ion-item class="ion-margin-bottom">
 				<ion-avatar class="ion-margin-end">
 					<img alt="{{recentItem.name}}" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
 				</ion-avatar>
 				<ion-label>{{recentItem.name}}</ion-label>
 			</ion-item>
 			} @else if (recentItem.type === 'group') {
-			<ion-item class="ion-justify-content-between ion-align-self-center">
+			<ion-item class="ion-justify-content-between ion-align-self-center ion-margin-bottom">
 				<ion-row class="ion-margin-end">
 					<ion-icon class="ion-margin-end" size="large" name="file-tray-outline"></ion-icon>
 					<ion-label>{{recentItem.name}}</ion-label>
@@ -39,6 +30,40 @@
 			</ion-item>
 			}
 			}
-		</section>
-	</div>
+		</ion-list>
+	</ion-card>
+
+	<ion-card class="ion-margin-top">
+		<ion-card-header>
+			<ion-card-title>Groups</ion-card-title>
+		</ion-card-header>
+
+		<ion-list>
+			@for (group of groupList; track $index) {
+			<ion-item class="ion-justify-content-between ion-align-self-center ion-margin-bottom">
+				<ion-row class="ion-margin-end">
+					<ion-icon class="ion-margin-end" size="large" name="file-tray-outline"></ion-icon>
+					<ion-label>{{group}}</ion-label>
+				</ion-row>
+			</ion-item>
+			}
+		</ion-list>
+	</ion-card>
+
+	<ion-card class="ion-margin-top">
+		<ion-card-header>
+			<ion-card-title>Friends on KiraKira</ion-card-title>
+		</ion-card-header>
+
+		<ion-list>
+			@for (friend of friendList; track $index) {
+			<ion-item class="ion-margin-bottom">
+				<ion-avatar class="ion-margin-end">
+					<img alt="{{friend}}" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+				</ion-avatar>
+				<ion-label>{{friend}}</ion-label>
+			</ion-item>
+			}
+		</ion-list>
+	</ion-card>
 </ion-content>
