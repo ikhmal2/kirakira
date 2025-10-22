@@ -1,0 +1,92 @@
+[
+    {
+        "type": "Payment",
+        "senderName": "Ikhmal Fahmi",
+        "receiverName": "Nurul Aini",
+        "txnName": "Dinner Bill",
+        "groupName": "Weekend Gathering",
+        "amount": 85.5,
+        "date": "2025-09-10T19:45:00Z"
+    },
+    {
+        "type": "Activity",
+        "senderName": "Sarah Lim",
+        "receiverName": "Group Chat",
+        "txnName": "Added new member",
+        "groupName": "Travel Buddies",
+        "amount": 0,
+        "date": "2025-09-11T09:20:00Z"
+    },
+    {
+        "type": "Settlement",
+        "senderName": "Adam Lee",
+        "receiverName": "Jason Tan",
+        "txnName": "Trip Settlement",
+        "groupName": "Langkawi Trip",
+        "amount": 120,
+        "date": "2025-09-12T15:00:00Z"
+    },
+    {
+        "type": "Payment",
+        "senderName": "Amira Hassan",
+        "receiverName": "Farah Aziz",
+        "txnName": "Grab Ride",
+        "groupName": "Office Commute",
+        "amount": 15,
+        "date": "2025-09-13T08:10:00Z"
+    },
+    {
+        "type": "Payment",
+        "senderName": "Jason Tan",
+        "receiverName": "Cafe Aroma",
+        "txnName": "Coffee Run",
+        "groupName": "Office Pantry",
+        "amount": 32.8,
+        "date": "2025-09-13T10:25:00Z"
+    },
+    {
+        "type": "Activity",
+        "senderName": "System",
+        "receiverName": "Group Chat",
+        "txnName": "Group Created",
+        "groupName": "Bali Vacation",
+        "amount": 0,
+        "date": "2025-09-14T12:00:00Z"
+    },
+    {
+        "type": "Settlement",
+        "senderName": "Nurul Aini",
+        "receiverName": "Ikhmal Fahmi",
+        "txnName": "Shared Groceries",
+        "groupName": "Flatmates",
+        "amount": 45.75,
+        "date": "2025-09-15T17:30:00Z"
+    },
+    {
+        "type": "Payment",
+        "senderName": "Michael Wong",
+        "receiverName": "SuperMart",
+        "txnName": "Weekly Groceries",
+        "groupName": "Household",
+        "amount": 210.9,
+        "date": "2025-09-16T14:45:00Z"
+    },
+    {
+        "type": "Activity",
+        "senderName": "Farah Aziz",
+        "receiverName": "Group Chat",
+        "txnName": "Updated Group Name",
+        "groupName": "Bali Vacation 2025",
+        "amount": 0,
+        "date": "2025-09-17T18:20:00Z"
+    },
+    {
+        "type": "Settlement",
+        "senderName": "Sarah Lim",
+        "receiverName": "Amira Hassan",
+        "txnName": "Event Settlement",
+        "groupName": "Birthday Party",
+        "amount": 90,
+        "date": "2025-09-18T20:15:00Z"
+    }
+]
