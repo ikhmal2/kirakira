@@ -3,11 +3,15 @@
 		<app-header />
 	</ion-toolbar>
 	<ion-toolbar class="ion-padding-bottom">
-		<ion-searchbar placeholder="With you and"></ion-searchbar>
+		<ion-searchbar (ionInput)="handleInput($event)" placeholder="With you and"></ion-searchbar>
 	</ion-toolbar>
 </ion-header>
 
+<!-- display none dulu untuk make room for add expense -->
 <ion-content class="ion-padding">
+	@if (results.length === 0) {
+	<app-add-expense-modal />
+
 	<ion-card>
 		<ion-card-header>
 			<ion-card-title>Recent</ion-card-title>
@@ -15,14 +19,15 @@
 
 		<ion-list>
 			@for (recentItem of recentList; track $index) { @if (recentItem.type==='friend' ) {
-			<ion-item class="ion-margin-bottom">
+			<ion-item (click)="setOpen(true)" class="ion-margin-bottom">
 				<ion-avatar class="ion-margin-end">
 					<img alt="{{recentItem.name}}" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
 				</ion-avatar>
 				<ion-label>{{recentItem.name}}</ion-label>
 			</ion-item>
 			} @else if (recentItem.type === 'group') {
-			<ion-item class="ion-justify-content-between ion-align-self-center ion-margin-bottom">
+			<ion-item (click)="setOpen(true)"
+				class="ion-justify-content-between ion-align-self-center ion-margin-bottom">
 				<ion-row class="ion-margin-end">
 					<ion-icon class="ion-margin-end" size="large" name="file-tray-outline"></ion-icon>
 					<ion-label>{{recentItem.name}}</ion-label>
@@ -40,7 +45,8 @@
 
 		<ion-list>
 			@for (group of groupList; track $index) {
-			<ion-item class="ion-justify-content-between ion-align-self-center ion-margin-bottom">
+			<ion-item (click)="setOpen(true)"
+				class="ion-justify-content-between ion-align-self-center ion-margin-bottom">
 				<ion-row class="ion-margin-end">
 					<ion-icon class="ion-margin-end" size="large" name="file-tray-outline"></ion-icon>
 					<ion-label>{{group}}</ion-label>
@@ -57,7 +63,7 @@
 
 		<ion-list>
 			@for (friend of friendList; track $index) {
-			<ion-item class="ion-margin-bottom">
+			<ion-item (click)="setOpen(true)" class="ion-margin-bottom">
 				<ion-avatar class="ion-margin-end">
 					<img alt="{{friend}}" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
 				</ion-avatar>
@@ -66,4 +72,13 @@
 			}
 		</ion-list>
 	</ion-card>
+	} @else if (results.length > 0) {
+	<ion-list>
+		@for (item of results; track $index) {
+		<ion-item>{{item}}</ion-item>
+		}
+	</ion-list>
+	}
+
+	<app-add-expense-modal [setModalOpen]="modalIsOpen" (modalClosed)="setOpen(false)" />
 </ion-content>
