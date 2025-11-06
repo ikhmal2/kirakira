@@ -106,14 +106,15 @@ export class AddExpensePage implements OnInit {
 
     if (query === '') {
       this.results = [];
-      console.log(this.results);
     }
   }
 
   public modalIsOpen = false;
+  public selectedEntity = '';
 
-  setOpen(isOpen: boolean) {
+  setOpen(isOpen: boolean, recentItem: string) {
     this.modalIsOpen = isOpen;
+    this.selectedEntity = recentItem;
   }
 
   ngOnInit() {}
