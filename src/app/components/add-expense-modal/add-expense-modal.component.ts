@@ -2,7 +2,6 @@ import {
   Component,
   OnInit,
   ViewChild,
-  computed,
   effect,
   input,
   output,
@@ -14,20 +13,34 @@ import {
   IonContent,
   IonItem,
   IonInput,
+  IonCard,
+  IonIcon,
 } from '@ionic/angular/standalone';
 import { OverlayEventDetail } from '@ionic/core/components';
+import { addIcons } from 'ionicons';
+import { cashOutline, documentTextOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-add-expense-modal',
   templateUrl: './add-expense-modal.component.html',
   styleUrls: ['./add-expense-modal.component.scss'],
-  imports: [IonInput, IonItem, IonContent, IonModal, FormsModule],
+  imports: [
+    IonIcon,
+    IonInput,
+    IonItem,
+    IonContent,
+    IonModal,
+    FormsModule,
+    IonCard,
+  ],
 })
 export class AddExpenseModalComponent implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
   constructor() {
+    addIcons({ documentTextOutline, cashOutline });
     effect(() => {
       this.name.set(this.SelectedName());
+      this.selectedList.push(this.name());
     });
   }
 
@@ -40,5 +53,8 @@ export class AddExpenseModalComponent implements OnInit {
   onWillDismiss(event: CustomEvent<OverlayEventDetail>) {
     this.modalClosed.emit();
   }
+
+  public selectedList: string[] = [];
+
   ngOnInit() {}
 }
