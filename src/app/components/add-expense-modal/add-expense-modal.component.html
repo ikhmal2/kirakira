@@ -1,21 +1,37 @@
 <ion-modal [isOpen]="isModalOpen()" (willDismiss)="onWillDismiss($event)" [initialBreakpoint]="1"
 	[breakpoints]="[0, 1]">
 	<ng-template>
-		<ion-content class="ion-padding ion-display-flex ion-justify-content-center ion-align-items-center">
+		<ion-content class="ion-padding">
 			<div class="modal-content">
-				<ion-item lines="none">
-					<ion-input type="text" [clearOnEdit]="true" label="With you and:" [(ngModel)]="name"
-						(ngModelChange)="name.set($event)"></ion-input>
-				</ion-item>
+				<!-- Search Section -->
+				<ion-searchbar [(ngModel)]="searchQuery" (ionInput)="handleSearch($event)"
+					placeholder="Add people to split with">
+				</ion-searchbar>
 
-				<!-- <ion-list>
-					@for (item of selectedList; track $index) {
-					<ion-item lines="none">
-						{{item}}
+				<!-- Selected Entities as Pills -->
+				<div class="selected-pills">
+					@for (entity of selectedList; track $index) {
+					@if (entity && entity.trim() !== '') {
+					<div class="pill">
+						<span>{{entity}}</span>
+						<ion-icon name="close-circle-outline" (click)="removeEntity(entity)"></ion-icon>
+					</div>
+					}
+					}
+				</div>
+
+				<!-- Search Results -->
+				@if (searchResults().length > 0) {
+				<ion-list>
+					@for (result of searchResults(); track $index) {
+					<ion-item (click)="addEntity(result)" button>
+						<ion-label>{{result}}</ion-label>
 					</ion-item>
 					}
-				</ion-list> -->
+				</ion-list>
+				}
 
+				<!-- Expense Form -->
 				<ion-card class="ion-padding">
 					<div class="expense-form">
 						<ion-input type="text" placeholder="Enter a description" [(ngModel)]="description"
@@ -27,7 +43,7 @@
 						</ion-input>
 					</div>
 				</ion-card>
-				<ion-button expand="block" (click)="saveExpense()">
+				<ion-button class="generic-button" (click)="saveExpense()">
 					<ion-icon name="checkmark-outline" slot="start"></ion-icon>
 					Save Expense
 				</ion-button>

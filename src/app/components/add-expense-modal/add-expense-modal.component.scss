@@ -7,7 +7,40 @@ ion-modal {
 	max-width: 400px;
 }
 
+.generic-button {
+	width: 50%;
+	margin-right: auto;
+	margin-left: auto;
+	display: block;
+	margin-top: 1rem;
+}
+
+.selected-pills {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	padding: 10px;
+	margin-bottom: 10px;
+	
+	.pill {
+		display: flex;
+		align-items: center;
+		background: var(--ion-color-primary);
+		color: white;
+		padding: 6px 12px;
+		border-radius: 20px;
+		font-size: 14px;
+		
+		ion-icon {
+			margin-left: 6px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+	}
+}
+
 .expense-form {
-	// width: 1/2;
-	// margin-right: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
 }

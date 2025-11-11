@@ -30,7 +30,7 @@ export interface List {
 }
 
 export interface ExpenseData {
-  name: string;
+  entities: string[];
   description: string;
   amount: number;
 }
