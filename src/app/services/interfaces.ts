@@ -28,3 +28,9 @@ export interface List {
   name: string;
   amount: number;
 }
+
+export interface ExpenseData {
+  name: string;
+  description: string;
+  amount: number;
+}

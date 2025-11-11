@@ -2,6 +2,11 @@ ion-modal {
 	--height: 90%
 }
 
+.modal-content {
+	width: 100%;
+	max-width: 400px;
+}
+
 .expense-form {
 	// width: 1/2;
 	// margin-right: auto;

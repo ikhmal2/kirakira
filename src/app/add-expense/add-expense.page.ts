@@ -22,6 +22,7 @@ import { addIcons } from 'ionicons';
 import { closeOutline, fileTrayOutline } from 'ionicons/icons';
 import { FriendsService } from '../services/friends.service';
 import { GroupsService } from '../services/groups.service';
+import { ExpenseData } from '../services/interfaces';
 
 @Component({
   selector: 'app-add-expense',
@@ -111,10 +112,16 @@ export class AddExpensePage implements OnInit {
 
   public modalIsOpen = false;
   public selectedEntity = '';
+  public expense_data: ExpenseData | null = null;
 
   setOpen(isOpen: boolean, recentItem: string) {
     this.modalIsOpen = isOpen;
     this.selectedEntity = recentItem;
+  }
+
+  handleExpenseSaved(expenseData: ExpenseData) {
+    this.expense_data = expenseData;
+    console.log('Expense data saved:', this.expense_data);
   }
 
   ngOnInit() {}
