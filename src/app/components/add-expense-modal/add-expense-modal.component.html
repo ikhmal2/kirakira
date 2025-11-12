@@ -3,12 +3,10 @@
 	<ng-template>
 		<ion-content class="ion-padding">
 			<div class="modal-content">
-				<!-- Search Section -->
 				<ion-searchbar [(ngModel)]="searchQuery" (ionInput)="handleSearch($event)"
 					placeholder="Add people to split with">
 				</ion-searchbar>
 
-				<!-- Selected Entities as Pills -->
 				<div class="selected-pills">
 					@for (entity of selectedList; track $index) {
 					@if (entity && entity.trim() !== '') {
@@ -20,29 +18,43 @@
 					}
 				</div>
 
-				<!-- Search Results -->
 				@if (searchResults().length > 0) {
 				<ion-list>
 					@for (result of searchResults(); track $index) {
-					<ion-item (click)="addEntity(result)" button>
-						<ion-label>{{result}}</ion-label>
+					<ion-item (click)="addEntity(result.name)" button>
+						<ion-label>{{result.name}}</ion-label>
 					</ion-item>
 					}
 				</ion-list>
 				}
 
-				<!-- Expense Form -->
 				<ion-card class="ion-padding">
 					<div class="expense-form">
-						<ion-input type="text" placeholder="Enter a description" [(ngModel)]="description"
-							(ngModelChange)="description.set($event)">
+						<ion-input type="text" required="true" placeholder="Enter a description"
+							[(ngModel)]="description" (ngModelChange)="description.set($event)">
 							<div slot="label"><ion-icon name="document-text-outline" size="large"></ion-icon></div>
 						</ion-input>
-						<ion-input type="number" placeholder="0.00" [(ngModel)]="amount">
+
+						<ion-input type="number" required="true" placeholder="0.00" [(ngModel)]="amount">
 							<div slot="label"><ion-icon name="cash-outline" size="large"></ion-icon></div>
 						</ion-input>
 					</div>
+
+					@if (selectedList.length === 1) {
+					<ion-list>
+						<ion-item>
+							<ion-select aria-label="expense-type" interface="modal" value="1">
+								<ion-select-option value="1">You paid, split equally</ion-select-option>
+								<ion-select-option value="2">You are owed the full amount.</ion-select-option>
+								<ion-select-option value="3">Ijud paid, split equally.</ion-select-option>
+								<ion-select-option value="4">Ijud is owed the full amount.</ion-select-option>
+							</ion-select>
+						</ion-item>
+					</ion-list>
+					}
+
 				</ion-card>
+
 				<ion-button class="generic-button" (click)="saveExpense()">
 					<ion-icon name="checkmark-outline" slot="start"></ion-icon>
 					Save Expense

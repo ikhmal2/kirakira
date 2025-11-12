@@ -20,6 +20,8 @@ import {
   IonSearchbar,
   IonList,
   IonLabel,
+  IonSelect,
+  IonSelectOption,
 } from '@ionic/angular/standalone';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { addIcons } from 'ionicons';
@@ -48,6 +50,8 @@ import { ExpenseData } from '../../services/interfaces';
     IonList,
     IonLabel,
     CommonModule,
+    IonSelect,
+    IonSelectOption,
   ],
 })
 export class AddExpenseModalComponent implements OnInit {
@@ -77,13 +81,13 @@ export class AddExpenseModalComponent implements OnInit {
   modalClosed = output<void>();
   expenseSaved = output<ExpenseData>();
   SelectedName = input('');
-  allEntities = input<string[]>([]);
+  allEntities = input<{ name: string; type: number }[]>([]);
 
   name = signal<string>('');
   description = signal<string>('');
   amount = signal<number>(0);
   searchQuery = signal<string>('');
-  searchResults = signal<string[]>([]);
+  searchResults = signal<{ name: string; type: number }[]>([]);
 
   onWillDismiss(event: CustomEvent<OverlayEventDetail>) {
     this.modalClosed.emit();
@@ -122,7 +126,7 @@ export class AddExpenseModalComponent implements OnInit {
     const query = event.target.value?.toLowerCase() || '';
     if (query) {
       const filtered = this.allEntities().filter(
-        (entity) => entity && entity.toLowerCase().includes(query)
+        (entity) => entity && entity.name.toLowerCase().includes(query)
       );
       this.searchResults.set(filtered);
     } else {

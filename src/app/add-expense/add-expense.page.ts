@@ -52,25 +52,24 @@ import { ExpenseData } from '../services/interfaces';
 export class AddExpensePage implements OnInit {
   private friendService = inject(FriendsService);
   private groupService = inject(GroupsService);
-  public friendList: string[] = [
-    'Aan Adik Alep',
-    'Alif Aiman',
-    'Ijud',
-    'Ariff',
+  public friendList: any = [
+    { name: 'Aan Adik Alep', type: 1 },
+    { name: 'Alif Aiman', type: 1 },
+    { name: 'Ijud', type: 1 },
+    { name: 'Ariff', type: 1 },
   ];
-  public groupList: string[] = [
-    'Bob Mullet',
-    'Ke pd ke kita',
-    'Loy dtg',
-    'Pestapora',
+  public groupList = [
+    { name: 'Bob Mullet', type: 2 },
+    { name: 'Ke pd ke kita', type: 2 },
+    { name: 'Loy dtg', type: 2 },
+    { name: 'Pestapora', type: 2 },
   ];
   public recentList = [
-    { name: 'Ijud', type: 'friend' },
-    { name: 'Thailand', type: 'group' },
-    { name: 'Aliff Aiman', type: 'friend' },
+    { name: 'Ijud', type: 1 },
+    { name: 'Thailand', type: 2 },
+    { name: 'Aliff Aiman', type: 1 },
   ];
-  //   public results = [...this.friendList, this.groupList];
-  public results: string[] = [];
+  public results: { name: string; type: number }[] = [];
   public combinedData = this.friendList.concat(this.groupList);
 
   constructor() {
@@ -81,8 +80,14 @@ export class AddExpensePage implements OnInit {
     this.friendService.getFriendsList().subscribe({
       next: (res) => {
         for (let i = 0; i < res.friends.length; i++) {
-          this.friendList.push(res.friends[i].name);
+          const data = {
+            name: res.friends[i].name,
+            type: '1',
+          };
+          //   this.friendList.push(res.friends[i].name);
+          this.friendList.push(data);
         }
+        console.log(this.friendList);
       },
     });
   }
@@ -101,8 +106,9 @@ export class AddExpensePage implements OnInit {
     this.results = [];
     const target = event.target as HTMLIonSearchbarElement;
     const query = target.value?.toLowerCase() || '';
-    this.results = this.combinedData.filter((d) =>
-      d.toLowerCase().includes(query)
+    this.results = this.combinedData.filter(
+      (d: { name: string; type: number }) =>
+        d.name.toLowerCase().includes(query)
     );
 
     if (query === '') {
@@ -112,11 +118,13 @@ export class AddExpensePage implements OnInit {
 
   public modalIsOpen = false;
   public selectedEntity = '';
+  public selectedEntityType = 0;
   public expense_data: ExpenseData | null = null;
 
-  setOpen(isOpen: boolean, recentItem: string) {
+  setOpen(isOpen: boolean, recentItem: string, itemType: number) {
     this.modalIsOpen = isOpen;
     this.selectedEntity = recentItem;
+    this.selectedEntityType = itemType;
   }
 
   handleExpenseSaved(expenseData: ExpenseData) {

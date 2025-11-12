@@ -17,15 +17,15 @@
 		</ion-card-header>
 
 		<ion-list>
-			@for (recentItem of recentList; track $index) { @if (recentItem.type==='friend' ) {
-			<ion-item (click)="setOpen(true, recentItem.name)" class="ion-margin-bottom">
+			@for (recentItem of recentList; track $index) { @if (recentItem.type===1 ) {
+			<ion-item (click)="setOpen(true, recentItem.name, 1)" class="ion-margin-bottom">
 				<ion-avatar class="ion-margin-end">
 					<img alt="{{recentItem.name}}" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
 				</ion-avatar>
 				<ion-label>{{recentItem.name}}</ion-label>
 			</ion-item>
-			} @else if (recentItem.type === 'group') {
-			<ion-item (click)="setOpen(true, recentItem.name)"
+			} @else if (recentItem.type === 2) {
+			<ion-item (click)="setOpen(true, recentItem.name, 2)"
 				class="ion-justify-content-between ion-align-self-center ion-margin-bottom">
 				<ion-row class="ion-margin-end">
 					<ion-icon class="ion-margin-end" size="large" name="file-tray-outline"></ion-icon>
@@ -44,11 +44,11 @@
 
 		<ion-list>
 			@for (group of groupList; track $index) {
-			<ion-item (click)="setOpen(true, group)"
+			<ion-item (click)="setOpen(true, group.name, group.type)"
 				class="ion-justify-content-between ion-align-self-center ion-margin-bottom">
 				<ion-row class="ion-margin-end">
 					<ion-icon class="ion-margin-end" size="large" name="file-tray-outline"></ion-icon>
-					<ion-label>{{group}}</ion-label>
+					<ion-label>{{group.name}}</ion-label>
 				</ion-row>
 			</ion-item>
 			}
@@ -62,11 +62,11 @@
 
 		<ion-list>
 			@for (friend of friendList; track $index) {
-			<ion-item (click)="setOpen(true, friend)" class="ion-margin-bottom">
+			<ion-item (click)="setOpen(true, friend.name, friend.type)" class="ion-margin-bottom">
 				<ion-avatar class="ion-margin-end">
 					<img alt="{{friend}}" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
 				</ion-avatar>
-				<ion-label>{{friend}}</ion-label>
+				<ion-label>{{friend.name}}</ion-label>
 			</ion-item>
 			}
 		</ion-list>
@@ -74,11 +74,11 @@
 	} @else if (results.length > 0) {
 	<ion-list>
 		@for (item of results; track $index) {
-		<ion-item (click)="setOpen(true, item)">{{item}}</ion-item>
+		<ion-item (click)="setOpen(true, item.name, item.type)">{{item.name}}</ion-item>
 		}
 	</ion-list>
 	}
 
-	<app-add-expense-modal [isModalOpen]="modalIsOpen" [SelectedName]="selectedEntity"
-		[allEntities]="combinedData" (modalClosed)="setOpen(false, '')" (expenseSaved)="handleExpenseSaved($event)" />
+	<app-add-expense-modal [isModalOpen]="modalIsOpen" [SelectedName]="selectedEntity" [allEntities]="combinedData"
+		(modalClosed)="setOpen(false, '', 0)" (expenseSaved)="handleExpenseSaved($event)" />
 </ion-content>
