@@ -21,7 +21,7 @@
 				@if (searchResults().length > 0) {
 				<ion-list>
 					@for (result of searchResults(); track $index) {
-					<ion-item (click)="addEntity(result.name)" button>
+					<ion-item (click)="addEntity(result.name, result.type)" button>
 						<ion-label>{{result.name}}</ion-label>
 					</ion-item>
 					}
@@ -40,7 +40,7 @@
 						</ion-input>
 					</div>
 
-					@if (selectedList.length === 1) {
+					@if (selectedList.length === 1 && entityType === 1) {
 					<ion-list>
 						<ion-item>
 							<ion-select aria-label="expense-type" interface="modal" value="1">
@@ -51,6 +51,8 @@
 							</ion-select>
 						</ion-item>
 					</ion-list>
+					} @else if (selectedList.length > 0) {
+					<app-add-expense-split-options />
 					}
 
 				</ion-card>

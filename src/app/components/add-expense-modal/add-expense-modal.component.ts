@@ -31,6 +31,7 @@ import {
   checkmarkOutline,
   closeCircleOutline,
 } from 'ionicons/icons';
+import { AddExpenseSplitOptionsComponent } from '../add-expense-split-options/add-expense-split-options.component';
 import { ExpenseData } from '../../services/interfaces';
 
 @Component({
@@ -52,6 +53,7 @@ import { ExpenseData } from '../../services/interfaces';
     CommonModule,
     IonSelect,
     IonSelectOption,
+    AddExpenseSplitOptionsComponent,
   ],
 })
 export class AddExpenseModalComponent implements OnInit {
@@ -64,6 +66,7 @@ export class AddExpenseModalComponent implements OnInit {
       closeCircleOutline,
     });
     effect(() => {
+      this.entityType = this.selectedType();
       const selectedName = this.SelectedName();
       this.name.set(selectedName);
       // Only add if name is not empty, not just whitespace, and not already in list
@@ -81,6 +84,8 @@ export class AddExpenseModalComponent implements OnInit {
   modalClosed = output<void>();
   expenseSaved = output<ExpenseData>();
   SelectedName = input('');
+  selectedType = input(0);
+  public entityType = this.selectedType();
   allEntities = input<{ name: string; type: number }[]>([]);
 
   name = signal<string>('');
@@ -134,11 +139,13 @@ export class AddExpenseModalComponent implements OnInit {
     }
   }
 
-  addEntity(entity: string) {
+  addEntity(entity: string, type: number) {
     // Only add if entity is not empty, not just whitespace, and not already in list
     if (entity && entity.trim() !== '' && !this.selectedList.includes(entity)) {
       this.selectedList.push(entity);
     }
+    this.entityType = type;
+
     this.searchQuery.set('');
     this.searchResults.set([]);
   }
@@ -156,5 +163,6 @@ export class AddExpenseModalComponent implements OnInit {
       (entity) => entity && entity.trim() !== ''
     );
     this.selectedList = [];
+    this.entityType = 0;
   }
 }

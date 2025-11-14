@@ -79,6 +79,7 @@
 	</ion-list>
 	}
 
-	<app-add-expense-modal [isModalOpen]="modalIsOpen" [SelectedName]="selectedEntity" [allEntities]="combinedData"
-		(modalClosed)="setOpen(false, '', 0)" (expenseSaved)="handleExpenseSaved($event)" />
+	<app-add-expense-modal [isModalOpen]="modalIsOpen" [SelectedName]="selectedEntity"
+		[selectedType]="selectedEntityType" [allEntities]="combinedData" (modalClosed)="setOpen(false, '', 0)"
+		(expenseSaved)="handleExpenseSaved($event)" />
 </ion-content>
