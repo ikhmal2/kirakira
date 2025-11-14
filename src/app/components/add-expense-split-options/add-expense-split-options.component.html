@@ -1,0 +1,46 @@
+<ion-card class="ion-margin">
+	@if (mode === 1) {
+	<p>
+		<ion-text>Split equally</ion-text>
+	</p>
+	<p>
+		<ion-text color="medium">Select which people owe an equal share.</ion-text>
+	</p>
+	} @else {
+	<p>
+		<ion-text>Split by exact amounts</ion-text>
+	</p>
+	<p>
+		<ion-text color="medium">Specify specifically how much each person owed.</ion-text>
+	</p>
+	}
+
+	<ion-grid class="ion-padding-top">
+		<ion-row>
+			<ion-col><ion-button (click)="equalSplit()" shape="round">=</ion-button></ion-col>
+			<ion-col><ion-button (click)="multiSplit()" shape="round">1.23</ion-button></ion-col>
+		</ion-row>
+	</ion-grid>
+
+	<ion-list>
+		@for (participant of groupParticipants; track $index) {
+		<ion-item><ion-checkbox>{{participant}}</ion-checkbox></ion-item>
+		}
+	</ion-list>
+
+	<ion-card>
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					<ion-item lines="none">
+						RM11.40 / person
+					</ion-item>
+				</ion-col>
+				<ion-col>
+					<ion-item lines="none"><ion-checkbox>All</ion-checkbox></ion-item>
+
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-card>
+</ion-card>

@@ -46,8 +46,10 @@
 							<ion-select aria-label="expense-type" interface="modal" value="1">
 								<ion-select-option value="1">You paid, split equally</ion-select-option>
 								<ion-select-option value="2">You are owed the full amount.</ion-select-option>
-								<ion-select-option value="3">Ijud paid, split equally.</ion-select-option>
-								<ion-select-option value="4">Ijud is owed the full amount.</ion-select-option>
+								<ion-select-option value="3">{{selectedList[0]}} paid, split
+									equally.</ion-select-option>
+								<ion-select-option value="4">{{selectedList[0]}} is owed the full
+									amount.</ion-select-option>
 							</ion-select>
 						</ion-item>
 					</ion-list>
